@@ -1,0 +1,172 @@
+[
+    {
+        "id": "c53618361841f448",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7f9eb292dadd5b17",
+        "type": "join",
+        "z": "c53618361841f448",
+        "name": "Merge StateRootHash and PublicKey",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 810,
+        "y": 140,
+        "wires": [
+            [
+                "a58bf2748257cefb"
+            ]
+        ]
+    },
+    {
+        "id": "cc72ff24ecd86568",
+        "type": "get-state-root-hash",
+        "z": "c53618361841f448",
+        "client": "",
+        "name": "",
+        "x": 460,
+        "y": 100,
+        "wires": [
+            [
+                "7f9eb292dadd5b17",
+                "0ce9fd35e74e8414"
+            ]
+        ]
+    },
+    {
+        "id": "0ce9fd35e74e8414",
+        "type": "join",
+        "z": "c53618361841f448",
+        "name": "Merge StateRootHash and Uref",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1490,
+        "y": 100,
+        "wires": [
+            [
+                "39bbf4cf2d0bc4f9"
+            ]
+        ]
+    },
+    {
+        "id": "39bbf4cf2d0bc4f9",
+        "type": "get-account-balance-by-uref",
+        "z": "c53618361841f448",
+        "name": "",
+        "client": "",
+        "x": 1790,
+        "y": 140,
+        "wires": [
+            [
+                "446275a2fe592ba5"
+            ]
+        ]
+    },
+    {
+        "id": "a58bf2748257cefb",
+        "type": "get-account-uref-by-public-key",
+        "z": "c53618361841f448",
+        "name": "",
+        "client": "",
+        "x": 1170,
+        "y": 140,
+        "wires": [
+            [
+                "0ce9fd35e74e8414"
+            ]
+        ]
+    },
+    {
+        "id": "0ffbb545e022ccd4",
+        "type": "http in",
+        "z": "c53618361841f448",
+        "name": "",
+        "url": "/balance/:publicKey",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "cc72ff24ecd86568",
+                "31c2f6a557433d59"
+            ]
+        ]
+    },
+    {
+        "id": "446275a2fe592ba5",
+        "type": "http response",
+        "z": "c53618361841f448",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2030,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "31c2f6a557433d59",
+        "type": "change",
+        "z": "c53618361841f448",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "req.params.publicKey",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "publicKey",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 140,
+        "wires": [
+            [
+                "7f9eb292dadd5b17"
+            ]
+        ]
+    }
+]

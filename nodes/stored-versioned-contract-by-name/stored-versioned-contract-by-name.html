@@ -1,0 +1,62 @@
+<script type="text/javascript">
+  RED.nodes.registerType('stored-versioned-contract-by-name', {
+    category: 'Casper',
+    color: '#E7615A',
+    defaults: {
+      name: {
+        value: ""
+      },
+      contractName: {
+        value: "",
+        required: true
+      },
+      entryPoint: {
+        value: "",
+        required: true
+      },
+      versionNumber: {
+        value: "",
+        required: false,
+        validate: RED.validators.number()
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "logo.png",
+    label: function() {
+      return this.name || "Stored Versioned Contract By Name";
+    }
+  });
+</script>
+
+<script type="text/html" data-template-name="stored-versioned-contract-by-name">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-contractName"><i class="fa fa-envelope"></i>Contract Name</label>
+    <input type="text" id="node-input-contractName">
+  </div>
+  <div class="form-row">
+    <label for="node-input-versionNumber"><i class="fa fa-envelope"></i>Version</label>
+    <input type="text" id="node-input-versionNumber">
+  </div>
+  <div class="form-row">
+    <label for="node-input-entryPoint"><i class="fa fa-globe"></i> Entry Point</label>
+    <input type="text" id="node-input-entryPoint">
+  </div>
+</script>
+
+
+<script type="text/html" data-help-name="stored-versioned-contract-by-name">
+  <p>Create a new stored versioned contract by name</p>
+  <h3>Input</h3>
+  <p>
+    The input is the <code>msg.payload</code> provided by the node <code>convert-to-runtime-args</code>
+  </p>
+  <h3>Output</h3>
+  <p>
+    The output is an object that can be deployed on the blockchain via the node <code>put-deploy</code>
+  </p>
+</script>

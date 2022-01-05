@@ -1,0 +1,52 @@
+[
+    {
+        "id": "c53618361841f448",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0a92ea7baedd2433",
+        "type": "http in",
+        "z": "c53618361841f448",
+        "name": "",
+        "url": "/stateroothash",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 100,
+        "wires": [
+            [
+                "b9d4d70a7351e0fe"
+            ]
+        ]
+    },
+    {
+        "id": "13a5b1fabb1b0d3e",
+        "type": "http response",
+        "z": "c53618361841f448",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 750,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "b9d4d70a7351e0fe",
+        "type": "get-state-root-hash",
+        "z": "c53618361841f448",
+        "client": "",
+        "name": "",
+        "x": 480,
+        "y": 100,
+        "wires": [
+            [
+                "13a5b1fabb1b0d3e"
+            ]
+        ]
+    }
+]

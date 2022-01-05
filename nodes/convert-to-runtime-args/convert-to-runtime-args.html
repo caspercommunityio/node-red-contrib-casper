@@ -1,0 +1,174 @@
+<script type="text/javascript">
+  RED.nodes.registerType('convert-to-runtime-args', {
+    category: 'Casper',
+    color: '#E7615A',
+    defaults: {
+      name: {
+        value: ""
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "logo.png",
+    label: function() {
+      return this.name || "Convert To RuntimeArgs";
+    }
+  });
+</script>
+
+<script type="text/html" data-template-name="convert-to-runtime-args">
+  <div class="form-row">
+    <label for="node-input-name">
+      <i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script type="text/html" data-help-name="convert-to-runtime-args">
+  <p>Convert an array of args to Casper's types</p>
+  <h3>Input</h3>
+  <p>
+    The <code>msg.paylaod</code> in input is an array with the definition of each args.<br />
+    The elements can be of type :<br />
+  <ul>
+    <li>
+      CLBool
+    </li>
+    <li>
+      CLI32
+    </li>
+    <li>
+      CLI64
+
+    </li>
+    <li>
+      CLU8
+
+    </li>
+    <li>
+
+      CLU32
+    </li>
+    <li>
+      CLU64
+
+    </li>
+    <li>
+      CLU128
+    </li>
+    <li>
+      CLU256
+    </li>
+    <li>
+      CLU512
+    </li>
+    <li>
+      CLUnit
+    </li>
+    <li>
+      CLString
+    </li>
+    <li>
+      CLURef
+    </li>
+    <li>
+      CLAccountHash
+    </li>
+    <li>
+      CLPublicKey
+    </li>
+    <li>
+      CLTuple1
+    </li>
+    <li>
+      CLTuple2
+    </li>
+    <li>
+      CLTuple3
+    </li>
+    <li>
+      CLList
+    </li>
+    <li>
+      CLMap
+    </li>
+  </ul>
+  Example of input object
+  <pre>
+  [
+    {
+        "name": "example_string",
+        "value_type": {
+            "type": "CLString"
+        },
+        "value": "Hello World"
+    },
+    {
+        "name": "example_number",
+        "value_type": {
+            "type": "CLU512"
+        },
+        "value": 12345
+    },
+    {
+        "name": "example_list",
+        "value_type": {
+            "type": "CLList",
+            "value_type": {
+                "type": "CLString"
+            }
+        },
+        "value": [
+            "elt1"
+        ]
+    },
+    {
+        "name": "example_tuple2",
+        "value_type": {
+            "type": "CLTuple2",
+            "value_type": [
+                {
+                    "type": "CLString"
+                },
+                {
+                    "type": "CLList",
+                    "value_type": {
+                        "type": "CLString"
+                    }
+                }
+            ]
+        },
+        "value": [
+            "Hello World",
+            [
+                "elt1 list",
+                "elt2 list"
+            ]
+        ]
+    }
+
+  ]
+      </pre>
+  </p>
+  <h3>Output</h3>
+  <p>
+    The <code>msg.payload</code> in output is an object of type <code>RuntimeArgs</code> that can be use in the nodes :
+  <ul>
+    <li>
+      module-bytes
+    </li>
+    <li>
+      stored-contract-by-hash
+    </li>
+    <li>
+      stored-contract-by-name
+    </li>
+    <li>
+      stored-versioned-contract-by-hash
+    </li>
+    <li>
+      stored-versioned-contract-by-name
+    </li>
+  </ul>
+  </p>
+</script>

@@ -1,0 +1,44 @@
+<script type="text/javascript">
+  RED.nodes.registerType('module-bytes', {
+    category: 'Casper',
+    color: '#E7615A',
+    defaults: {
+      name: {
+        value: ""
+      },
+      moduleBytes: {
+        value: "",
+        required: true
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "logo.png",
+    label: function() {
+      return this.name || "Module Bytes";
+    }
+  });
+</script>
+<script type="text/html" data-template-name="module-bytes">
+  <div class="form-row">
+    <label for="node-input-name">
+      <i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-moduleBytes">
+      <i class="fa fa-envelope"></i>Module Bytes</label>
+    <input type="text" id="node-input-moduleBytes">
+  </div>
+</script>
+<script type="text/html" data-help-name="module-bytes">
+  <p>Create a new contract by Module Bytes</p>
+  <h3>Input</h3>
+  <p>
+    The input is the <code>msg.payload</code> provided by the node <code>convert-to-runtime-args</code>
+  </p>
+  <h3>Output</h3>
+  <p>
+    The output is an object that can be deployed on the blockchain via the node <code>put-deploy</code>
+  </p>
+</script>

@@ -1,0 +1,40 @@
+<script type="text/javascript">
+  RED.nodes.registerType('casper-sign', {
+    category: 'config',
+    defaults: {
+      privateKeyPem: {
+        value: "",
+        required: true
+      },
+      publicKeyPem: {
+        value: "",
+        required: true
+      },
+      publicKey: {
+        value: "",
+        required: false
+      }
+    },
+    label: function() {
+      return this.publicKey || "Signer identification";
+    }
+  });
+</script>
+
+<script type="text/html" data-template-name="casper-sign">
+  <div class="form-row">
+    <label for="node-config-input-host">
+      <i class="fa fa-globe"></i> Public Key</label>
+    <input type="text" id="node-config-input-publicKey">
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-host">
+      <i class="fa fa-user-secret"></i> Private Key Pem</label>
+    <input type="text" id="node-config-input-privateKeyPem">
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-port">
+      <i class="fa fa-globe"></i> Public Key Pem</label>
+    <input type="text" id="node-config-input-publicKeyPem">
+  </div>
+</script>

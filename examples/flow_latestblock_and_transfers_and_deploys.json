@@ -1,0 +1,184 @@
+[
+    {
+        "id": "c53618361841f448",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0a92ea7baedd2433",
+        "type": "http in",
+        "z": "c53618361841f448",
+        "name": "",
+        "url": "/latestblock",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 240,
+        "wires": [
+            [
+                "b6a7cd9e9c03c075"
+            ]
+        ]
+    },
+    {
+        "id": "13a5b1fabb1b0d3e",
+        "type": "http response",
+        "z": "c53618361841f448",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1070,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "b6a7cd9e9c03c075",
+        "type": "get-latest-block-info",
+        "z": "c53618361841f448",
+        "name": "",
+        "client": "",
+        "x": 380,
+        "y": 240,
+        "wires": [
+            [
+                "5b7c2ba6f4ee7ddd",
+                "483ec7a90ba5ef32",
+                "813eb09a4008146c"
+            ]
+        ]
+    },
+    {
+        "id": "5b7c2ba6f4ee7ddd",
+        "type": "function",
+        "z": "c53618361841f448",
+        "name": "Loop Through Deploy Hashes",
+        "func": "for (var i = 0; i < msg.payload.block.body.deploy_hashes.length; i++) {\n var newMsg = {};\n newMsg.payload = msg.payload.block.body.deploy_hashes[i];\n node.send(newMsg);\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 100,
+        "wires": [
+            [
+                "48a28c6e2fca7754"
+            ]
+        ]
+    },
+    {
+        "id": "48a28c6e2fca7754",
+        "type": "get-deploy",
+        "z": "c53618361841f448",
+        "name": "",
+        "client": "",
+        "x": 690,
+        "y": 140,
+        "wires": [
+            [
+                "68d6eae7cb4c3471"
+            ]
+        ]
+    },
+    {
+        "id": "68d6eae7cb4c3471",
+        "type": "join",
+        "z": "c53618361841f448",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "3",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 690,
+        "y": 180,
+        "wires": [
+            [
+                "483ec7a90ba5ef32"
+            ]
+        ]
+    },
+    {
+        "id": "483ec7a90ba5ef32",
+        "type": "join",
+        "z": "c53618361841f448",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "3",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 910,
+        "y": 240,
+        "wires": [
+            [
+                "13a5b1fabb1b0d3e"
+            ]
+        ]
+    },
+    {
+        "id": "01ea7d29b507a33f",
+        "type": "get-transfers",
+        "z": "c53618361841f448",
+        "name": "",
+        "client": "",
+        "x": 740,
+        "y": 320,
+        "wires": [
+            [
+                "483ec7a90ba5ef32"
+            ]
+        ]
+    },
+    {
+        "id": "813eb09a4008146c",
+        "type": "change",
+        "z": "c53618361841f448",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.block.hash",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 320,
+        "wires": [
+            [
+                "01ea7d29b507a33f"
+            ]
+        ]
+    }
+]

@@ -1,0 +1,68 @@
+<script type="text/javascript">
+  RED.nodes.registerType('casper-client', {
+    category: 'config',
+    defaults: {
+      environment: {
+        value: "casper",
+        required: true
+      },
+      protocol: {
+        value: "http://",
+        required: true
+      },
+      host: {
+        value: "localhost",
+        required: true
+      },
+      port: {
+        value: 7777,
+        required: false
+      },
+      path: {
+        value: "/rpc",
+        required: false
+      }
+    },
+    label: function() {
+      return this.environment + " : " + this.protocol + this.host + (
+        this.port ?
+        ":" + this.port :
+        ''
+      ) + this.path;
+    }
+  });
+</script>
+<!-- test -->
+<script type="text/html" data-template-name="casper-client">
+  <div class="form-row">
+    <label for="node-config-input-environment">
+      <i class="fa fa-shield"></i> Environment</label>
+    <select name="pets" id="node-config-input-environment">
+      <option value="casper">Mainnet</option>
+      <option value="casper-test">Testnet</option>
+    </select>
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-protocol">
+      <i class="fa fa-shield"></i> Protocol</label>
+    <select name="pets" id="node-config-input-protocol">
+      <option value="http://">http://</option>
+      <option value="https://">https://</option>
+    </select>
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-host">
+      <i class="fa fa-globe"></i> Host</label>
+    <input type="text" id="node-config-input-host">
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-port">
+      <i class="fa fa-globe"></i> Port</label>
+    <input type="text" id="node-config-input-port">
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-path">
+      <i class="fa fa-globe"></i> Path</label>
+    <input type="text" id="node-config-input-path">
+  </div>
+</script>

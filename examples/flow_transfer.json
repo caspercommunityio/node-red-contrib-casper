@@ -1,0 +1,72 @@
+[
+    {
+        "id": "c766e5fc6c51a006",
+        "type": "put-deploy",
+        "z": "c53618361841f448",
+        "name": "",
+        "payment": "5",
+        "client": "",
+        "Sign": "",
+        "x": 1390,
+        "y": 420,
+        "wires": [
+            [
+                "725c87c19cfe166d"
+            ]
+        ]
+    },
+    {
+        "id": "d2f36f5d8e1ec192",
+        "type": "inject",
+        "z": "c53618361841f448",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"amount\":1000,\"publicKey\":\"01ec78afd125dce4cfd4437b04132eb186d56d680b96757196a1c97b43868b639e\",\"transferId\":0}",
+        "payloadType": "json",
+        "x": 1050,
+        "y": 420,
+        "wires": [
+            [
+                "e3e7199e75888e73"
+            ]
+        ]
+    },
+    {
+        "id": "e3e7199e75888e73",
+        "type": "transfer",
+        "z": "c53618361841f448",
+        "name": "",
+        "x": 1200,
+        "y": 420,
+        "wires": [
+            [
+                "c766e5fc6c51a006"
+            ]
+        ]
+    },
+    {
+        "id": "725c87c19cfe166d",
+        "type": "debug",
+        "z": "c53618361841f448",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1590,
+        "y": 420,
+        "wires": []
+    }
+]

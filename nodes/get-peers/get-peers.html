@@ -1,0 +1,47 @@
+<script type="text/javascript">
+  RED.nodes.registerType('get-peers', {
+    category: 'Casper',
+    color: '#E1372D',
+    defaults: {
+      name: {
+        value: ""
+      },
+      client: {
+        value: "",
+        type: "casper-client"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "logo.png",
+    label: function() {
+      return this.name || "Get Peers";
+    }
+  });
+</script>
+
+<script type="text/html" data-template-name="get-peers">
+  <div class="form-row">
+    <label for="node-input-name">
+      <i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-client">
+      <i class="fa fa-plug"></i> Client</label>
+    <input type="text" id="node-input-client">
+  </div>
+</script>
+
+<script type="text/html" data-help-name="get-peers">
+  <p>Get the infos of the Peers</p>
+  <h3>Input</h3>
+  <p>
+    No <code>msg.payload</code> is needed.<br />
+  </p>
+  <h3>Output</h3>
+  <p>
+    The <code>msg.payload</code> in output is the JSON of the RPC Request<br />
+    The <code>msg.topic</code> is set to <code>peers</code>
+  </p>
+</script>

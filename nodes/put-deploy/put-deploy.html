@@ -1,0 +1,80 @@
+<script type="text/javascript">
+  RED.nodes.registerType('put-deploy', {
+    category: 'Casper',
+    color: '#E7615A',
+    defaults: {
+      name: {
+        value: ""
+      },
+      payment: {
+        value: "3",
+        required: true,
+        validate: RED.validators.number()
+      },
+      client: {
+        value: "",
+        type: "casper-client"
+      },
+      Sign: {
+        value: "",
+        type: "casper-sign"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "logo.png",
+    label: function() {
+      return this.name || "Put Deploy";
+    }
+  });
+</script>
+<script type="text/html" data-template-name="put-deploy">
+  <div class="form-row">
+    <label for="node-input-name">
+      <i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-payment">
+      <i class="fa fa-usd"></i> Payment Amount</label>
+    <input type="text" id="node-input-payment">
+  </div>
+  <div class="form-row">
+    <label for="node-input-client">
+      <i class="fa fa-plug"></i> Client</label>
+    <input type="text" id="node-input-client">
+  </div>
+  <div class="form-row">
+    <label for="node-input-Sign">
+      <i class="fa fa-id-card-o"></i> Sign</label>
+    <input type="text" id="node-input-Sign">
+  </div>
+</script>
+<script type="text/html" data-help-name="put-deploy">
+  <p>A simple node that converts the message payloads into all lower-case characters</p>
+  <h3>Input</h3>
+  <p>
+    The <code>msg.payload</code> is one of the 5 following nodes : <br />
+  <ul>
+    <li>
+      module-bytes
+    </li>
+    <li>
+      stored-contract-by-hash
+    </li>
+    <li>
+      stored-contract-by-name
+    </li>
+    <li>
+      stored-versioned-contract-by-hash
+    </li>
+    <li>
+      stored-versioned-contract-by-name
+    </li>
+  </ul>
+  </p>
+  <h3>Output</h3>
+  <p>
+    The <code>msg.payload</code> in output is the json result object of the deploy.
+  </p>
+</script>

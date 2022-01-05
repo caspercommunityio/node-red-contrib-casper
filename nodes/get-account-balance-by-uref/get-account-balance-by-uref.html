@@ -1,0 +1,60 @@
+<script type="text/javascript">
+  RED.nodes.registerType('get-account-balance-by-uref', {
+    category: 'Casper',
+    color: '#E1372D',
+    defaults: {
+      name: {
+        value: ""
+      },
+      client: {
+        value: "",
+        type: "casper-client"
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "logo.png",
+    label: function() {
+      return this.name || "Get Account Balance by URef";
+    }
+  });
+</script>
+
+<script type="text/html" data-template-name="get-account-balance-by-uref">
+  <div class="form-row">
+    <label for="node-input-name">
+      <i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-client">
+      <i class="fa fa-plug"></i> Client</label>
+    <input type="text" id="node-input-client">
+  </div>
+</script>
+
+<script type="text/html" data-help-name="get-account-balance-by-uref">
+  <p>Get the account balance by passing the uref</p>
+  <h3>Input</h3>
+  <p>
+    To retrieve the current balance of the account, you must specify the following <code>msg.payload</code> :
+  <pre>
+  {
+    "stateRootHash":"STATE_ROOT_HASH",
+    "accountUref":"ACCOUNT_UREF"
+  }
+</pre>
+  Note that the <code>accountUref</code> can be find via the nodes <code>get-account-uref-by-account-hash</code> or <code>get-account-uref-by-public-key</code>
+  </p>
+  <h3>Output</h3>
+  <p>
+    The <code>msg.payload</code> in output will be the amount in motes and in CPSR of the specified account.<br />
+  <pre>
+      {
+        "inMotes":"8011166409",
+        "inCPSR":"8.011166409"
+      }
+    </pre>
+  The <code>msg.topic</code> is set to <code>accountBalanceByUref</code>
+  </p>
+</script>
