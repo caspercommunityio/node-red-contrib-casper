@@ -94,7 +94,9 @@ module.exports = function (RED) {
 					text: error
 				});
 				node.send({
-					"payload": error
+					"payload": {
+						error: error
+					}
 				});
 			}
 		});
