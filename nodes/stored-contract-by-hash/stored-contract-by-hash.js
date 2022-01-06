@@ -11,13 +11,18 @@ module.exports = function (RED) {
 		node.on("input", function (msg) {
 
 			try {
-
-				const session = DeployUtil.ExecutableDeployItem.newStoredContractByHash(
-					Uint8Array.from(Buffer.from(this.contractHash, "hex")),
-					this.entryPoint,
-					msg.payload
-				);
-				msg.payload = session;
+				if (this.contractHash == undefined || this.entryPoint == undefined) {
+					msg.payload = {
+						error: "Invalid arguments supplied."
+					};
+				} else {
+					const session = DeployUtil.ExecutableDeployItem.newStoredContractByHash(
+						Uint8Array.from(Buffer.from(this.contractHash, "hex")),
+						this.entryPoint,
+						msg.payload
+					);
+					msg.payload = session;
+				}
 				node.send(msg);
 				node.status({});
 			} catch (err) {

@@ -10,14 +10,20 @@ module.exports = function (RED) {
 		this.versionNumber = config.versionNumber;
 		node.on("input", function (msg) {
 			try {
-				const session = DeployUtil.ExecutableDeployItem.newStoredVersionContractByName(
-					this.contractName,
-					parseInt(this.versionNumber) || null,
-					this.entryPoint,
-					msg.payload
-				);
+				if (this.contractName == undefined || this.entryPoint == undefined || this.versionNumber == undefined) {
+					msg.payload = {
+						error: "Invalid arguments supplied."
+					};
+				} else {
+					const session = DeployUtil.ExecutableDeployItem.newStoredVersionContractByName(
+						this.contractName,
+						parseInt(this.versionNumber) || null,
+						this.entryPoint,
+						msg.payload
+					);
 
-				msg.payload = session;
+					msg.payload = session;
+				}
 				node.send(msg);
 				node.status({});
 			} catch (err) {

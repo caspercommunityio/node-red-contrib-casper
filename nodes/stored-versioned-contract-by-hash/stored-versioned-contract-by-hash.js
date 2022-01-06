@@ -11,14 +11,20 @@ module.exports = function (RED) {
 		this.versionNumber = config.versionNumber;
 		node.on("input", function (msg) {
 			try {
+				if (this.contractHash == undefined || this.entryPoint == undefined || this.versionNumber == undefined) {
+					msg.payload = {
+						error: "Invalid arguments supplied."
+					};
+				} else {
+					const session = DeployUtil.ExecutableDeployItem.newStoredVersionContractByHash(
+						Uint8Array.from(Buffer.from(this.contractHash, "hex")),
+						parseInt(this.versionNumber) || null,
+						this.entryPoint,
+						msg.payload
+					);
 
-				const session = DeployUtil.ExecutableDeployItem.newStoredVersionContractByHash(
-					Uint8Array.from(Buffer.from(this.contractHash, "hex")),
-					parseInt(this.versionNumber) || null,
-					this.entryPoint,
-					msg.payload
-				);
-				msg.payload = session;
+					msg.payload = session;
+				}
 				node.send(msg);
 				node.status({})
 			} catch (err) {

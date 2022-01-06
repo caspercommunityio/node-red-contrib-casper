@@ -56,5 +56,36 @@ describe('stored-versioned-contract-by-hash Node', function () {
 			});
 		});
 	});
+	it('should return error', function (done) {
+		var flow = [{
+				id: "n1",
+				type: "stored-versioned-contract-by-hash",
+				name: "test",
+				wires: [["n2"]]
+			},
+			{
+				id: "n2",
+				type: "helper"
+			}];
+		helper.load(node, flow, function () {
+			var n2 = helper.getNode("n2");
+			var n1 = helper.getNode("n1");
+
+			const args = RuntimeArgs.fromMap({});
+			args.insert("test", new CLString("TEST"));
+
+			n1.contractHash = "2f36a35edcbaabe17aba805e3fae42699a2bb80c2e0c15189756fdc4895356f8";
+			n1.versionNumber = 1;
+
+			n1.receive({
+				payload: RuntimeArgs.fromMap({})
+			});
+
+			n2.on("input", function (msg) {
+				msg.payload.should.have.property('error');
+				done();
+			});
+		});
+	});
 
 });

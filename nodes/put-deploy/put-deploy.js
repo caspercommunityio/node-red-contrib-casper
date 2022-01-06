@@ -58,11 +58,15 @@ module.exports = function (RED) {
 					.deploy(signedDeploy)
 					.then(r => {
 						msg.payload = r;
+						msg.topic = "putDeploy";
 						node.send(msg);
 						node.status({});
 					})
 					.catch(err => {
-						msg.payload = err;
+						msg.payload = {
+							error: err
+						};
+						msg.topic = "putDeploy";
 						node.send(msg);
 						node.status({
 							fill: "red",
@@ -71,7 +75,10 @@ module.exports = function (RED) {
 						});
 					});
 			} catch (err) {
-				msg.payload = err;
+				msg.payload = {
+					error: err
+				};
+				msg.topic = "putDeploy";
 				node.send(msg);
 				node.status({
 					fill: "red",

@@ -9,16 +9,24 @@ module.exports = function (RED) {
 		this.entryPoint = config.entryPoint;
 		node.on("input", function (msg) {
 			try {
+				if (this.contractName == undefined || this.entryPoint == undefined) {
+					msg.payload = {
+						error: "Invalid arguments supplied."
+					};
+				} else {
 
-				const session = DeployUtil.ExecutableDeployItem.newStoredContractByName(
-					this.contractName,
-					this.entryPoint,
-					msg.payload
-				);
+					const session = DeployUtil.ExecutableDeployItem.newStoredContractByName(
+						this.contractName,
+						this.entryPoint,
+						msg.payload
+					);
+					msg.payload = session;
+				}
 
-				msg.payload = session;
+
 				node.send(msg);
 				node.status({});
+
 			} catch (err) {
 				msg.payload = {
 					error: err

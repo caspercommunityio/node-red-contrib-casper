@@ -4,7 +4,7 @@
     "description": "NodeRED nodes to use the Casper's Blockchain",
     "main": "index.js",
     "scripts": {
-        "test": "mocha \"test/**/*_spec.js\" --timeout 7000"
+        "test": "mocha \"test/**/**_spec.js\" --timeout 7000"
     },
     "author": "caspercommunity.io",
     "license": "MIT",

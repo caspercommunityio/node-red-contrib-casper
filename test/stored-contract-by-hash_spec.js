@@ -56,4 +56,36 @@ describe('stored-contract-by-hash Node', function () {
 		});
 	});
 
+	it('should return error', function (done) {
+		var flow = [{
+				id: "n1",
+				type: "stored-contract-by-hash",
+				name: "test",
+				wires: [["n2"]]
+			},
+			{
+				id: "n2",
+				type: "helper"
+			}];
+		helper.load(node, flow, function () {
+			var n2 = helper.getNode("n2");
+			var n1 = helper.getNode("n1");
+
+			const args = RuntimeArgs.fromMap({});
+			args.insert("test", new CLString("TEST"));
+
+			n1.entryPoint = "test";
+
+			n1.receive({
+				payload: RuntimeArgs.fromMap({})
+			});
+
+			n2.on("input", function (msg) {
+				console.log(msg);
+				msg.payload.should.have.property('error');
+				done();
+			});
+		});
+	});
+
 });
