@@ -1,0 +1,1107 @@
+[
+    {
+        "id": "861be235.dbf6d",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d01272cc.ca5ab",
+        "type": "get-deploy",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "client": "a8a596ae.b629c8",
+        "x": 1030,
+        "y": 60,
+        "wires": [
+            [
+                "c4c770ef.4e81b"
+            ]
+        ]
+    },
+    {
+        "id": "124789a7.2035a6",
+        "type": "inject",
+        "z": "861be235.dbf6d",
+        "name": "Inject DeployHash",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "556dcbf612ad7aa975c0704e0b913a4b6ac2d05fbb4f0e28f7ef52482a66c0ef",
+        "payloadType": "str",
+        "x": 150,
+        "y": 60,
+        "wires": [
+            [
+                "d01272cc.ca5ab"
+            ]
+        ]
+    },
+    {
+        "id": "e0ccf245.52031",
+        "type": "get-block-info",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "client": "a8a596ae.b629c8",
+        "x": 420,
+        "y": 120,
+        "wires": [
+            [
+                "5475136c.39030c"
+            ]
+        ]
+    },
+    {
+        "id": "17f2de8.e6dfc22",
+        "type": "inject",
+        "z": "861be235.dbf6d",
+        "name": "Inject Block Hash",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "str",
+        "x": 140,
+        "y": 120,
+        "wires": [
+            [
+                "e0ccf245.52031"
+            ]
+        ]
+    },
+    {
+        "id": "5475136c.39030c",
+        "type": "function",
+        "z": "861be235.dbf6d",
+        "name": "Loop Through Deploy Hashes",
+        "func": "for (var i = 0; i < msg.payload.block.body.deploy_hashes.length; i++) {\n var newMsg = {};\n newMsg.payload = msg.payload.block.body.deploy_hashes[i];\n node.send(newMsg);\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 750,
+        "y": 160,
+        "wires": [
+            [
+                "d01272cc.ca5ab"
+            ]
+        ]
+    },
+    {
+        "id": "5704e204.c6e74c",
+        "type": "get-latest-block-info",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "client": "e2445d.b76d1ba",
+        "x": 440,
+        "y": 160,
+        "wires": [
+            [
+                "5475136c.39030c"
+            ]
+        ]
+    },
+    {
+        "id": "13055621.d6486a",
+        "type": "get-block-info-by-height",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "client": "e2445d.b76d1ba",
+        "x": 450,
+        "y": 200,
+        "wires": [
+            [
+                "5475136c.39030c"
+            ]
+        ]
+    },
+    {
+        "id": "54bb6422.21289c",
+        "type": "inject",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "351357",
+        "payloadType": "num",
+        "x": 110,
+        "y": 200,
+        "wires": [
+            [
+                "13055621.d6486a"
+            ]
+        ]
+    },
+    {
+        "id": "e6c35b43.13d1b8",
+        "type": "inject",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "5704e204.c6e74c"
+            ]
+        ]
+    },
+    {
+        "id": "b0a6ac06.0cee1",
+        "type": "get-peers",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "client": "e2445d.b76d1ba",
+        "x": 400,
+        "y": 240,
+        "wires": [
+            [
+                "c4c770ef.4e81b"
+            ]
+        ]
+    },
+    {
+        "id": "ff961f53.e7eff",
+        "type": "get-status",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "client": "a713ba1f.0165d8",
+        "x": 410,
+        "y": 280,
+        "wires": [
+            [
+                "c4c770ef.4e81b"
+            ]
+        ]
+    },
+    {
+        "id": "48a2a20f.dbcb4c",
+        "type": "get-validators-info",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "client": "e2445d.b76d1ba",
+        "x": 430,
+        "y": 320,
+        "wires": [
+            [
+                "c4c770ef.4e81b"
+            ]
+        ]
+    },
+    {
+        "id": "94d4f248.2b543",
+        "type": "inject",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 240,
+        "wires": [
+            [
+                "b0a6ac06.0cee1"
+            ]
+        ]
+    },
+    {
+        "id": "3c6397c0.eeef88",
+        "type": "inject",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 280,
+        "wires": [
+            [
+                "ff961f53.e7eff"
+            ]
+        ]
+    },
+    {
+        "id": "d2b04af4.3c45f8",
+        "type": "inject",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 320,
+        "wires": [
+            [
+                "48a2a20f.dbcb4c"
+            ]
+        ]
+    },
+    {
+        "id": "66d2bd2.7696444",
+        "type": "inject",
+        "z": "861be235.dbf6d",
+        "name": "Inject Account Hash",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "accountHash",
+        "payload": "6c57a6cafbd8f6efbe01345ca0347a6a938f541d28c3690dc310b0bb4d3e10cf",
+        "payloadType": "str",
+        "x": 150,
+        "y": 460,
+        "wires": [
+            [
+                "d3538237.b443d",
+                "cefd0634.711de8"
+            ]
+        ]
+    },
+    {
+        "id": "cefd0634.711de8",
+        "type": "get-state-root-hash",
+        "z": "861be235.dbf6d",
+        "client": "a8a596ae.b629c8",
+        "name": "",
+        "x": 440,
+        "y": 360,
+        "wires": [
+            [
+                "d3538237.b443d",
+                "89c9beea.ba43c",
+                "b9b707c6.00d198"
+            ]
+        ]
+    },
+    {
+        "id": "d3538237.b443d",
+        "type": "join",
+        "z": "861be235.dbf6d",
+        "name": "Merge StateRootHash and AccountHash",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 640,
+        "y": 460,
+        "wires": [
+            [
+                "2fb84464.fde4bc",
+                "c4c770ef.4e81b"
+            ]
+        ]
+    },
+    {
+        "id": "2fb84464.fde4bc",
+        "type": "get-account-uref-by-account-hash",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "client": "a8a596ae.b629c8",
+        "x": 1100,
+        "y": 460,
+        "wires": [
+            [
+                "89c9beea.ba43c"
+            ]
+        ]
+    },
+    {
+        "id": "89c9beea.ba43c",
+        "type": "join",
+        "z": "861be235.dbf6d",
+        "name": "Merge StateRootHash and Uref",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 810,
+        "y": 360,
+        "wires": [
+            [
+                "3a87333a.b2ae1c",
+                "c4c770ef.4e81b"
+            ]
+        ]
+    },
+    {
+        "id": "3a87333a.b2ae1c",
+        "type": "get-account-balance-by-uref",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "client": "a8a596ae.b629c8",
+        "x": 1090,
+        "y": 360,
+        "wires": [
+            [
+                "c4c770ef.4e81b"
+            ]
+        ]
+    },
+    {
+        "id": "c4c770ef.4e81b",
+        "type": "debug",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1730,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "75485d16.9b7b44",
+        "type": "get-account-uref-by-public-key",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "client": "a8a596ae.b629c8",
+        "x": 1090,
+        "y": 500,
+        "wires": [
+            [
+                "89c9beea.ba43c"
+            ]
+        ]
+    },
+    {
+        "id": "2e223340.2c69fc",
+        "type": "inject",
+        "z": "861be235.dbf6d",
+        "name": "Inject Public Key",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "publicKey",
+        "payload": "01bae47da8aa69679f6b482dce908a0ef507c8b48fbdbc8d46c91996000c2cd9a0",
+        "payloadType": "str",
+        "x": 140,
+        "y": 500,
+        "wires": [
+            [
+                "b9b707c6.00d198",
+                "cefd0634.711de8"
+            ]
+        ]
+    },
+    {
+        "id": "b9b707c6.00d198",
+        "type": "join",
+        "z": "861be235.dbf6d",
+        "name": "Merge StateRootHash and PublicKey",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 630,
+        "y": 500,
+        "wires": [
+            [
+                "75485d16.9b7b44"
+            ]
+        ]
+    },
+    {
+        "id": "85ea9a25.79dfd8",
+        "type": "get-transfers",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "client": "e2445d.b76d1ba",
+        "x": 420,
+        "y": 540,
+        "wires": [
+            [
+                "c4c770ef.4e81b"
+            ]
+        ]
+    },
+    {
+        "id": "2e50a7e.6e2e158",
+        "type": "inject",
+        "z": "861be235.dbf6d",
+        "name": "Inject Block Hash",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1edfb1e616eff2437e122895e7f9b87ba51029be637530e32ac0018a2295751a",
+        "payloadType": "str",
+        "x": 140,
+        "y": 540,
+        "wires": [
+            [
+                "85ea9a25.79dfd8"
+            ]
+        ]
+    },
+    {
+        "id": "40d82990.6f1c78",
+        "type": "inject",
+        "z": "861be235.dbf6d",
+        "name": "Inject Switch Block",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "c19949257b4b5667abc9740fd587317f470ad9daa0cfde09f35a7076dfb00934",
+        "payloadType": "str",
+        "x": 150,
+        "y": 580,
+        "wires": [
+            [
+                "c8be0b15.3d55c8"
+            ]
+        ]
+    },
+    {
+        "id": "c8be0b15.3d55c8",
+        "type": "get-era-switch-block-info",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "client": "e2445d.b76d1ba",
+        "x": 450,
+        "y": 580,
+        "wires": [
+            [
+                "c4c770ef.4e81b"
+            ]
+        ]
+    },
+    {
+        "id": "de46b2ac.6361b",
+        "type": "get-block-state",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "client": "e2445d.b76d1ba",
+        "x": 1040,
+        "y": 660,
+        "wires": [
+            [
+                "c4c770ef.4e81b"
+            ]
+        ]
+    },
+    {
+        "id": "fbdb45da.4c1308",
+        "type": "get-state-root-hash",
+        "z": "861be235.dbf6d",
+        "client": "e2445d.b76d1ba",
+        "name": "",
+        "x": 440,
+        "y": 620,
+        "wires": [
+            [
+                "5b2be6a8.de2af8"
+            ]
+        ]
+    },
+    {
+        "id": "f4ec0fa2.eee83",
+        "type": "inject",
+        "z": "861be235.dbf6d",
+        "name": "Inject Contract Hash",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "key",
+        "payload": "hash-fb8e0215c040691e9bbe945dd22a00989b532b9c2521582538edb95b61156698",
+        "payloadType": "str",
+        "x": 150,
+        "y": 660,
+        "wires": [
+            [
+                "fbdb45da.4c1308",
+                "5b2be6a8.de2af8"
+            ]
+        ]
+    },
+    {
+        "id": "5b2be6a8.de2af8",
+        "type": "join",
+        "z": "861be235.dbf6d",
+        "name": "Merge StateRootHash and Contract Hash",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 760,
+        "y": 660,
+        "wires": [
+            [
+                "de46b2ac.6361b"
+            ]
+        ]
+    },
+    {
+        "id": "ea33bc8b.fdd12",
+        "type": "get-dictionary-item-by-uref",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "client": "a713ba1f.0165d8",
+        "x": 1080,
+        "y": 740,
+        "wires": [
+            [
+                "c4c770ef.4e81b"
+            ]
+        ]
+    },
+    {
+        "id": "1985f952.227187",
+        "type": "join",
+        "z": "861be235.dbf6d",
+        "name": "Merge StateRootHash and Item",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 750,
+        "y": 740,
+        "wires": [
+            [
+                "ea33bc8b.fdd12",
+                "c4c770ef.4e81b"
+            ]
+        ]
+    },
+    {
+        "id": "48c23b77.9f4ca4",
+        "type": "get-state-root-hash",
+        "z": "861be235.dbf6d",
+        "client": "a713ba1f.0165d8",
+        "name": "",
+        "x": 440,
+        "y": 700,
+        "wires": [
+            [
+                "1985f952.227187"
+            ]
+        ]
+    },
+    {
+        "id": "357434c9.32487c",
+        "type": "inject",
+        "z": "861be235.dbf6d",
+        "name": "Inject DictionaryItem",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "item",
+        "payload": "{\"dictionaryKey\":\"mika.cspr\",\"seedUref\":\"uref-bC3c71eA5246EFA149CA653E6F63192e7c59C652Ab830eC59b234B99bfA0B109-007\"}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 740,
+        "wires": [
+            [
+                "48c23b77.9f4ca4",
+                "1985f952.227187"
+            ]
+        ]
+    },
+    {
+        "id": "47d344f3.0be40c",
+        "type": "http in",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "url": "/block/:block",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 880,
+        "wires": [
+            [
+                "4b47e57f.92b5dc"
+            ]
+        ]
+    },
+    {
+        "id": "22e0e8de.579d08",
+        "type": "http response",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1270,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "d6c98968.1d6628",
+        "type": "get-block-info",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "client": "a713ba1f.0165d8",
+        "x": 940,
+        "y": 880,
+        "wires": [
+            [
+                "22e0e8de.579d08"
+            ]
+        ]
+    },
+    {
+        "id": "4b47e57f.92b5dc",
+        "type": "change",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "req.params.block",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 880,
+        "wires": [
+            [
+                "d6c98968.1d6628"
+            ]
+        ]
+    },
+    {
+        "id": "af5d8465.f7efc8",
+        "type": "http in",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "url": "/dict/:uref/:key",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 960,
+        "wires": [
+            [
+                "ae0ab494.734498",
+                "c32c3b85.32eba8"
+            ]
+        ]
+    },
+    {
+        "id": "ae0ab494.734498",
+        "type": "change",
+        "z": "861be235.dbf6d",
+        "name": "Create Item Object",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "item",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.dictionaryKey",
+                "pt": "msg",
+                "to": "req.params.key",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.seedUref",
+                "pt": "msg",
+                "to": "req.params.uref",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 980,
+        "wires": [
+            [
+                "4aafbe4f.c7603"
+            ]
+        ]
+    },
+    {
+        "id": "c32c3b85.32eba8",
+        "type": "get-state-root-hash",
+        "z": "861be235.dbf6d",
+        "client": "a713ba1f.0165d8",
+        "name": "",
+        "x": 390,
+        "y": 940,
+        "wires": [
+            [
+                "4aafbe4f.c7603"
+            ]
+        ],
+        "inputLabels": [
+            "nnn"
+        ]
+    },
+    {
+        "id": "4aafbe4f.c7603",
+        "type": "join",
+        "z": "861be235.dbf6d",
+        "name": "Merge StateRootHash and Item",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 650,
+        "y": 960,
+        "wires": [
+            [
+                "f0563cf3.bba59"
+            ]
+        ]
+    },
+    {
+        "id": "f0563cf3.bba59",
+        "type": "get-dictionary-item-by-uref",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "client": "a713ba1f.0165d8",
+        "x": 970,
+        "y": 960,
+        "wires": [
+            [
+                "22e0e8de.579d08"
+            ]
+        ]
+    },
+    {
+        "id": "8391d66.794c128",
+        "type": "inject",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[{\"name\":\"url\",\"value_type\":{\"type\":\"CLString\"},\"value\":\"http://test.com\"},{\"name\":\"option\",\"value_type\":{\"type\":\"CLAccountHash\"},\"value\":\"f44fcee6dbee884caa80860db27b0ee9211211af7ccd5c6d167f8a19deb110e1\"},{\"name\":\"carbon_emission\",\"value_type\":{\"type\":\"CLString\"},\"value\":\"1000\"},{\"name\":\"month_year\",\"value_type\":{\"type\":\"CLString\"},\"value\":\"November_2021\"},{\"name\":\"number\",\"value_type\":{\"type\":\"CLU512\"},\"value\":12345},{\"name\":\"test_str\",\"value_type\":{\"type\":\"CLString\"},\"value\":\"test\"},{\"name\":\"test_tuple2\",\"value_type\":{\"type\":\"CLTuple2\",\"value_type\":[{\"type\":\"CLString\"},{\"type\":\"CLList\",\"value_type\":{\"type\":\"CLString\"}}]},\"value\":[\"test\",[\"abc\",\"def\"]]},{\"name\":\"test_list\",\"value_type\":{\"type\":\"CLList\",\"value_type\":{\"type\":\"CLString\"}},\"value\":[\"test\"]},{\"name\":\"test_list_tuple\",\"value_type\":{\"type\":\"CLList\",\"value_type\":{\"type\":\"CLTuple2\",\"value_type\":[{\"type\":\"CLString\"},{\"type\":\"CLString\"}]}},\"value\":[[\"test\",\"tuple\"],[\"test2\",\"tuple2\"]]},{\"name\":\"test_map_tuple\",\"value_type\":{\"type\":\"CLMap\",\"value_type\":[{\"type\":\"CLString\"},{\"type\":\"CLTuple2\",\"value_type\":[{\"type\":\"CLString\"},{\"type\":\"CLString\"}]}]},\"value\":[[\"test\",[\"tuple\",\"map\"]]]}]",
+        "payloadType": "json",
+        "x": 170,
+        "y": 1340,
+        "wires": [
+            [
+                "2864c84.70aec38"
+            ]
+        ]
+    },
+    {
+        "id": "c268d3fb.79091",
+        "type": "put-deploy",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "payment": "10",
+        "client": "a713ba1f.0165d8",
+        "Sign": "",
+        "x": 950,
+        "y": 1440,
+        "wires": [
+            [
+                "6a91357c.8e154c"
+            ]
+        ]
+    },
+    {
+        "id": "c61bd075.5fe73",
+        "type": "inject",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"amount\":5,\"publicKey\":\"01eb86b54bafad6b54cf7c1495a19310fd7425f2a71a7c2ec5d62583e072978017\",\"transferId\":0}",
+        "payloadType": "json",
+        "x": 170,
+        "y": 1440,
+        "wires": [
+            [
+                "96d4b6a9.6fa9d8"
+            ]
+        ]
+    },
+    {
+        "id": "96d4b6a9.6fa9d8",
+        "type": "transfer",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "x": 540,
+        "y": 1440,
+        "wires": [
+            [
+                "c268d3fb.79091"
+            ]
+        ]
+    },
+    {
+        "id": "2864c84.70aec38",
+        "type": "convert-to-runtime-args",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "x": 390,
+        "y": 1340,
+        "wires": [
+            [
+                "37cc69a0.0e9c06"
+            ]
+        ]
+    },
+    {
+        "id": "6a91357c.8e154c",
+        "type": "debug",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1190,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "37cc69a0.0e9c06",
+        "type": "stored-contract-by-hash",
+        "z": "861be235.dbf6d",
+        "name": "",
+        "contractHash": "2f36a35edcbaabe17aba805e3fae42699a2bb80c2e0c15189756fdc4895356f8",
+        "entryPoint": "set_url",
+        "x": 690,
+        "y": 1340,
+        "wires": [
+            [
+                "c268d3fb.79091"
+            ]
+        ]
+    },
+    {
+        "id": "a8a596ae.b629c8",
+        "type": "casper-client",
+        "environment": "casper",
+        "protocol": "http://",
+        "host": "88.99.95.7",
+        "port": "7777",
+        "path": "/rpc"
+    },
+    {
+        "id": "e2445d.b76d1ba",
+        "type": "casper-client",
+        "environment": "casper-test",
+        "protocol": "http://",
+        "host": "65.108.8.45",
+        "port": "7777"
+    },
+    {
+        "id": "a713ba1f.0165d8",
+        "type": "casper-client",
+        "environment": "casper-test",
+        "protocol": "http://",
+        "host": "3.208.91.63",
+        "port": "7777",
+        "path": "/rpc"
+    }
+]
