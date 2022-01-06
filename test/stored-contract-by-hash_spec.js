@@ -81,7 +81,6 @@ describe('stored-contract-by-hash Node', function () {
 			});
 
 			n2.on("input", function (msg) {
-				console.log(msg);
 				msg.payload.should.have.property('error');
 				done();
 			});
