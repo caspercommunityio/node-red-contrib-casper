@@ -46,7 +46,7 @@ describe('get-deploy Node', function () {
 			});
 
 			n2.on("input", function (msg) {
-				msg.payload.deploy.should.have.property('hash', "556DCBf612Ad7aA975C0704E0B913a4B6AC2d05FBB4F0E28f7ef52482a66C0EF");
+				msg.payload.deploy.should.have.property('hash', "556dcbf612ad7aa975c0704e0b913a4b6ac2d05fbb4f0e28f7ef52482a66c0ef");
 				done();
 			});
 		});

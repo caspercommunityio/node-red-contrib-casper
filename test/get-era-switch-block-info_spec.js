@@ -46,7 +46,7 @@ describe('get-era-switch-block-info Node', function () {
 			});
 
 			n2.on("input", function (msg) {
-				msg.payload.should.have.property('blockHash', '6CE2cA51Fd7A7ec1AAE6Da7909c3Ac16716BE26257F1e9332c5Bb131c3267823');
+				msg.payload.should.have.property('blockHash', '6ce2ca51fd7a7ec1aae6da7909c3ac16716be26257f1e9332c5bb131c3267823');
 				done();
 			});
 		});

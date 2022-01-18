@@ -46,7 +46,7 @@ describe('get-transfers Node', function () {
 			});
 
 			n2.on("input", function (msg) {
-				msg.payload[0].should.have.property('deployHash', "b7bd0b5572e6D481E235808BF973cAb305D58c59E6067Aa7A2C0C3589FAc82e0");
+				msg.payload[0].should.have.property('deployHash', "b7bd0b5572e6d481e235808bf973cab305d58c59e6067aa7a2c0c3589fac82e0");
 				done();
 			});
 		});

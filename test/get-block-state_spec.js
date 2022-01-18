@@ -49,7 +49,7 @@ describe('get-block-state Node', function () {
 			});
 
 			n2.on("input", function (msg) {
-				msg.payload.Contract.should.have.property('contractPackageHash', "contract-package-wasmfceD7072e4B52F8F4841667cFc0a7d92c93b01Ffc0717d5CD80f49546BD7FebB");
+				msg.payload.Contract.should.have.property('contractPackageHash', "contract-package-wasmfced7072e4b52f8f4841667cfc0a7d92c93b01ffc0717d5cd80f49546bd7febb");
 				done();
 			});
 		});

@@ -49,7 +49,7 @@ describe('get-account-uref-by-account-hash Node', function () {
 			});
 
 			n2.on("input", function (msg) {
-				msg.should.have.property('payload', "uref-2A46eB9654eaaC8DcBCC02b94429C0be3256D721d95A7A5290876cA101116188-007");
+				msg.should.have.property('payload', "uref-2a46eb9654eaac8dcbcc02b94429c0be3256d721d95a7a5290876ca101116188-007");
 				done();
 			});
 		});

@@ -46,7 +46,7 @@ describe('get-block-info-by-height Node', function () {
 			});
 
 			n2.on("input", function (msg) {
-				msg.payload.block.should.have.property('hash', "9b73c39BD1d3c1d9B6A4C5c260f581839B4977baA1c520ebc9C19Db2B6f90127");
+				msg.payload.block.should.have.property('hash', "9b73c39bd1d3c1d9b6a4c5c260f581839b4977baa1c520ebc9c19db2b6f90127");
 				done();
 			});
 		});
