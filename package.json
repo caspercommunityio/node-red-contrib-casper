@@ -8,7 +8,9 @@
     },
     "author": "caspercommunity.io",
     "license": "MIT",
-    "keywords": [ "node-red" ],
+    "keywords": [
+        "node-red"
+    ],
     "node-red": {
         "nodes": {
             "casper-client": "nodes/casper-client/casper-client.js",
@@ -44,7 +46,7 @@
     },
     "devDependencies": {
         "mocha": "^9.1.3",
-        "node-red": "^2.1.3",
+        "node-red": "^2.1.6",
         "node-red-node-test-helper": "^0.2.7"
     }
 }
