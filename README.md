@@ -79,14 +79,14 @@ In order to do that, we have implemented a node where you can specify your infor
 
 **DO NOT SHARE THESE INFORMATION WITH OTHER PEOPLE**
 
-You have to specify the private key pem and the public key pem of your account in order to sign the transaction correctly.
+You have to specify the private key pem and the public key pem of your account in order to sign the transaction correctly. Copy only the necessary information not the "---- BEGIN/END ----". 
 
 The private key comes from cspr.live.
 
 You can generate the public key pem using the following openssl command :
 
 ```
-openssl pkey -in private_key_from_csprlive.pem -out public_key.pem
+openssl pkey -in private_key_from_csprlive.pem -out public_key.pem -pubout -outform PEM
 ```
 
 ## How to test
