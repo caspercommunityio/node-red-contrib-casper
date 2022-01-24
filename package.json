@@ -1,6 +1,6 @@
 {
     "name": "node-red-contrib-casper",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "NodeRED nodes to use the Casper's Blockchain",
     "main": "index.js",
     "scripts": {

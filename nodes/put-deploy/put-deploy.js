@@ -30,10 +30,19 @@ module.exports = function (RED) {
 					"-----BEGIN PRIVATE KEY-----\r\n" +
 					this.casperSign.privateKeyPem +
 					"\r\n-----END PRIVATE KEY-----";
-				let asym = Keys.Ed25519.parseKeyPair(
-					Keys.Ed25519.readBase64WithPEM(publicContent),
-					Keys.Ed25519.readBase64WithPEM(privateContent)
-				);
+
+				let asy = undefined;
+				try {
+					asym = Keys.Ed25519.parseKeyPair(
+						Keys.Ed25519.readBase64WithPEM(publicContent),
+						Keys.Ed25519.readBase64WithPEM(privateContent)
+					);
+				} catch (err) {
+					asym = Keys.Secp256K1.parseKeyPair(
+						Keys.Secp256K1.readBase64WithPEM(publicContent),
+						Keys.Secp256K1.readBase64WithPEM(privateContent)
+					);
+				}
 
 				const activePublicKey = CLPublicKey.fromHex(asym.publicKey.toHex());
 				const clKeyParam = new CLAccountHash(activePublicKey.toAccountHash());

@@ -30,17 +30,17 @@ describe('put-deploy Node', function () {
 		});
 	});
 
-	it('should transfert', function (done) {
+	it('should transfert Ed25519', function (done) {
 		var flow = [{
 				id: "n1",
 				type: "put-deploy",
 				name: "test",
 				wires: [["n2"]]
-    			},
+	  			},
 			{
 				id: "n2",
 				type: "helper"
-    			}];
+	  			}];
 
 		helper.load(node, flow, function () {
 			var n2 = helper.getNode("n2");
@@ -70,6 +70,62 @@ describe('put-deploy Node', function () {
 					1
 				);
 
+
+				n1.receive({
+					payload: session
+				});
+
+				n2.on("input", function (msg) {
+					msg.payload.deploy.should.have.property('hash');
+					done();
+				});
+			} catch (err) {
+				console.log(err);
+			}
+		});
+	});
+
+	it('should transfert Secp256K1', function (done) {
+		var flow = [{
+				id: "n1",
+				type: "put-deploy",
+				name: "test",
+				wires: [["n2"]]
+					},
+			{
+				id: "n2",
+				type: "helper"
+					}];
+
+		helper.load(node, flow, function () {
+			var n2 = helper.getNode("n2");
+			var n1 = helper.getNode("n1");
+			n1.casperClient = {
+				protocol: "http://",
+				host: "88.99.95.7",
+				port: "7777",
+				path: "/rpc",
+				environment: "casper-test"
+			};
+
+			n1.casperSign = {
+				privateKeyPem: "MHQCAQEEIP16wHnWub303C7DpqgJ45HMt6NhWumrJfOvlKUKrQNboAcGBSuBBAAKoUQDQgAE91+QScFTEs6iZ2efdCr/L0/3tO+wLwnsCSuU+tJ/kRs8B7iWCDGhha11xMskydHqsoGk0OjxgcB+9RGczgsPUw==",
+				publicKeyPem: "MDYwEAYHKoZIzj0CAQYFK4EEAAoDIgAD91+QScFTEs6iZ2efdCr/L0/3tO+wLwnsCSuU+tJ/kRs=",
+				publicKey: "0203f75f9049c15312cea267679f742aff2f4ff7b4efb02f09ec092b94fad27f911b"
+			};
+
+			n1.payment = 1000000000;
+
+			try {
+
+				const session = DeployUtil.ExecutableDeployItem.newTransfer(
+					1000000 * 1000000000,
+					CLPublicKey.fromHex("01eb86b54bafad6b54cf7c1495a19310fd7425f2a71a7c2ec5d62583e072978017"),
+					null,
+					1
+				);
+
+				console.log(session);
 
 				n1.receive({
 					payload: session
