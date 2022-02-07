@@ -8,6 +8,8 @@ module.exports = function (RED) {
 		this.contractName = config.contractName;
 		this.entryPoint = config.entryPoint;
 		this.versionNumber = config.versionNumber;
+
+		//When an input comes to the node
 		node.on("input", function (msg) {
 			try {
 				if (this.contractName == undefined || this.entryPoint == undefined || this.versionNumber == undefined) {
@@ -15,6 +17,8 @@ module.exports = function (RED) {
 						error: "Invalid arguments supplied."
 					};
 				} else {
+					//Generate a StoredContractByName object based on the "convert-to-runtime-args" node
+					//The ouput of this node will be use in the "put-deploy" node
 					const session = DeployUtil.ExecutableDeployItem.newStoredVersionContractByName(
 						this.contractName,
 						parseInt(this.versionNumber) || null,
@@ -27,6 +31,7 @@ module.exports = function (RED) {
 				node.send(msg);
 				node.status({});
 			} catch (err) {
+				//Set the message payload and display the error's message bellow the node
 				msg.payload = {
 					error: err
 				};

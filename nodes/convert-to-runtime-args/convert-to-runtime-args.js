@@ -1,3 +1,4 @@
+//Convert a JSON object to CLValue type recognise by the casper js sdk
 const {
 	CLValueBuilder,
 	CLPublicKey,
@@ -78,9 +79,11 @@ module.exports = function (RED) {
 		RED.nodes.createNode(this, config);
 		var node = this;
 
+		//When an input comes to the node
 		node.on("input", function (msg) {
 			try {
 				const args = RuntimeArgs.fromMap({});
+				//Convert each element of the payload into a CLType
 				msg.payload.map(x => {
 					args.insert(x.name, convertArgToCLType(x));
 				});
@@ -88,6 +91,7 @@ module.exports = function (RED) {
 				node.send(msg);
 				node.status({});
 			} catch (error) {
+				//Display the error's message bellow the node
 				node.status({
 					fill: "red",
 					shape: "ring",

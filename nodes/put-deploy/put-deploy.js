@@ -13,8 +13,12 @@ module.exports = function (RED) {
 		this.payment = config.payment;
 		this.casperClient = RED.nodes.getNode(config.client);
 		this.casperSign = RED.nodes.getNode(config.Sign);
+
+		//When an input comes to the node
 		node.on("input", function (msg) {
 			try {
+
+				//Initialize the casper service from the js SDK with the info of the node "capser-client"
 				var client = new CasperServiceByJsonRPC(
 					this.casperClient.protocol +
 					this.casperClient.host +
@@ -22,6 +26,7 @@ module.exports = function (RED) {
 					this.casperClient.path
 				);
 
+				//Retrieve the info from the node "casper-sign" and generate the needed object
 				let publicContent =
 					"-----BEGIN PUBLIC KEY-----\r\n" +
 					this.casperSign.publicKeyPem +
@@ -31,7 +36,8 @@ module.exports = function (RED) {
 					this.casperSign.privateKeyPem +
 					"\r\n-----END PRIVATE KEY-----";
 
-				let asy = undefined;
+				//Create a ED25519 or SECP256K1 object. Used to sign the deploy
+				let asym = undefined;
 				try {
 					asym = Keys.Ed25519.parseKeyPair(
 						Keys.Ed25519.readBase64WithPEM(publicContent),
@@ -47,6 +53,9 @@ module.exports = function (RED) {
 				const activePublicKey = CLPublicKey.fromHex(asym.publicKey.toHex());
 				const clKeyParam = new CLAccountHash(activePublicKey.toAccountHash());
 				const payment = DeployUtil.standardPayment(this.payment * 1000000000);
+
+				//Create the deploy
+				//It use the input from one of the following nodes : module-bytes or stored-(versioned)-contract-by-hash or stored-(versioned)-contract-by-name or transfer
 				const deploy = DeployUtil.makeDeploy(
 					new DeployUtil.DeployParams(
 						activePublicKey,
@@ -56,13 +65,14 @@ module.exports = function (RED) {
 					payment
 				);
 
-
+				//Sign the deploy
 				const signedDeploy = DeployUtil.signDeploy(deploy, asym);
 
 				msg.payload = JSON.parse(
 					JSON.stringify(DeployUtil.deployToJson(signedDeploy))
 				);
 				node.send(msg);
+				//Call the related request from the Casper Service to deploy the transaction
 				client
 					.deploy(signedDeploy)
 					.then(r => {
@@ -72,6 +82,7 @@ module.exports = function (RED) {
 						node.status({});
 					})
 					.catch(err => {
+						//Set the message payload and display the error's message bellow the node
 						msg.payload = {
 							error: err
 						};
@@ -84,6 +95,7 @@ module.exports = function (RED) {
 						});
 					});
 			} catch (err) {
+				//Set the message payload and display the error's message bellow the node
 				msg.payload = {
 					error: err
 				};

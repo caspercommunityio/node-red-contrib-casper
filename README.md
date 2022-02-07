@@ -14,8 +14,10 @@ Use the Palette to install this package or follow this how-to for local dev : ht
 ```
 cd ~/.node-red
 npm install node-red-contrib-casper
-sudo service nodered restart
 ```
+
+Then restart node-red.
+
 ## How to create your first flow
 
 * If you are not familiar with node-red, first read the doc. of how to create your firsts flows : https://nodered.org/docs/tutorials/first-flow and https://nodered.org/docs/tutorials/
@@ -110,7 +112,7 @@ openssl pkey -in private_key_from_csprlive.pem -out public_key.pem -pubout -outf
 Run the following command :
 
 ```
-git clone git@github.com:caspercommunityio/node-red-contrib-casper.git
+git clone https://github.com/caspercommunityio/node-red-contrib-casper.git
 cd node-red-contrib-casper
 npm i
 npm test
