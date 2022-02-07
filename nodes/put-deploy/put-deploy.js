@@ -7,6 +7,11 @@ const {
 } = require("casper-js-sdk");
 
 module.exports = function (RED) {
+
+	/**
+	 * PutDeployNode - Deploy a transaction on the casper's blockchain	
+	 *
+	 */
 	function PutDeployNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;

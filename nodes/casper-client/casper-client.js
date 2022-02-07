@@ -1,4 +1,9 @@
 module.exports = function (RED) {
+
+	/**
+	 * CasperClientNode - Create a client to make requests to the casper's blockchain	
+	 *
+	 */
 	function CasperClientNode(n) {
 		RED.nodes.createNode(this, n);
 		//Set the variables needed for the creation of a RPC Endpoint

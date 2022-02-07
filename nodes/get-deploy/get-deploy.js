@@ -3,6 +3,11 @@ const {
 } = require("casper-js-sdk");
 
 module.exports = function (RED) {
+
+	/**
+	 * GetDeployNode - Get the deploy info from the casper's blockchain	
+	 *
+	 */
 	function GetDeployNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;

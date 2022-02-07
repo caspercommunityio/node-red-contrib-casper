@@ -3,6 +3,11 @@ const {
 } = require("casper-js-sdk");
 
 module.exports = function (RED) {
+
+	/**
+	 * GetStatusNode - Get the status of the validator from the casper's blockchain	
+	 *
+	 */
 	function GetStatusNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;

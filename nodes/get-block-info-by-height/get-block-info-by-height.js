@@ -3,6 +3,11 @@ const {
 } = require("casper-js-sdk");
 
 module.exports = function (RED) {
+
+	/**
+	 * GetBlockInfoByHeightNode - Get the block info from the casper's blockchain based on the height	
+	 *
+	 */
 	function GetBlockInfoByHeightNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;

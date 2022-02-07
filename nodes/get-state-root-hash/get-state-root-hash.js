@@ -3,6 +3,11 @@ const {
 } = require("casper-js-sdk");
 
 module.exports = function (RED) {
+
+	/**
+	 * GetStateRootHashNode - Get the state root hash from the casper's blockchain	
+	 *
+	 */
 	function GetStateRootHashNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;

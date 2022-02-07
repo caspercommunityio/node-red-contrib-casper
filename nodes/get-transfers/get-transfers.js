@@ -3,6 +3,11 @@ const {
 } = require("casper-js-sdk");
 
 module.exports = function (RED) {
+
+	/**
+	 * GetTransferNode - Get the transfers from the casper's blockchain	
+	 *
+	 */
 	function GetTransferNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;

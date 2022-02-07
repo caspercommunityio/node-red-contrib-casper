@@ -3,6 +3,11 @@ const {
 } = require("casper-js-sdk");
 
 module.exports = function (RED) {
+
+	/**
+	 * GetDicitonaryItemByUrefNode - Get the dictionary item info from the casper's blockchain	
+	 *
+	 */
 	function GetDicitonaryItemByUrefNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;

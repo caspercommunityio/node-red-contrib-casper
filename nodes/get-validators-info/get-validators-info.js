@@ -3,6 +3,11 @@ const {
 } = require("casper-js-sdk");
 
 module.exports = function (RED) {
+
+	/**
+	 * GetValidatorsInfoNode - Get the auction infos from the casper's blockchain	
+	 *
+	 */
 	function GetValidatorsInfoNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;

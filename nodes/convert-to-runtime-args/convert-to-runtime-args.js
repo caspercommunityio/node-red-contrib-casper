@@ -7,6 +7,7 @@ const {
 	CLAccountHash,
 	CLKey
 } = require("casper-js-sdk");
+
 module.exports = function (RED) {
 
 	function convertValueToCLType(value, type) {
@@ -75,6 +76,11 @@ module.exports = function (RED) {
 		return convertValueToCLType(arg.value, arg.value_type);
 	}
 
+
+	/**
+	 * ConvertArgsNode - Node to convert a JSON Object to CLType	
+	 *
+	 */
 	function ConvertArgsNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;
@@ -88,10 +94,11 @@ module.exports = function (RED) {
 					args.insert(x.name, convertArgToCLType(x));
 				});
 				msg.payload = args;
+				//Send the message to the output
 				node.send(msg);
 				node.status({});
 			} catch (error) {
-				//Display the error's message bellow the node
+				//Set the message payload and display the error's message bellow the node
 				node.status({
 					fill: "red",
 					shape: "ring",

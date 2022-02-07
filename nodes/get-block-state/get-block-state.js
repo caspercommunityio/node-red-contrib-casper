@@ -3,6 +3,11 @@ const {
 } = require("casper-js-sdk");
 
 module.exports = function (RED) {
+
+	/**
+	 * GetBlockStateNode - Get the block state info from the casper's blockchain	
+	 *
+	 */
 	function GetBlockStateNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;

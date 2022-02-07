@@ -3,6 +3,11 @@ const {
 } = require("casper-js-sdk");
 
 module.exports = function (RED) {
+
+	/**
+	 * ModuleBytesNode - Create a module bytes object to deploy it on the casper's blockchain	
+	 *
+	 */
 	function ModuleBytesNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;

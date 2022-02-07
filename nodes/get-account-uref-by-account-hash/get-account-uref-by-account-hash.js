@@ -3,6 +3,11 @@ const {
 } = require("casper-js-sdk");
 
 module.exports = function (RED) {
+
+	/**
+	 * GetAccountUrefByAccountHashNode - Get the account Uref based on the account hash	
+	 *
+	 */
 	function GetAccountUrefByAccountHashNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;

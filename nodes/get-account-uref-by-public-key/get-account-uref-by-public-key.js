@@ -4,6 +4,11 @@ const {
 } = require("casper-js-sdk");
 
 module.exports = function (RED) {
+
+	/**
+	 * GetAccountUrefByPublicKeyNode - Get an account uref based on the public key
+	 *
+	 */
 	function GetAccountUrefByPublicKeyNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;

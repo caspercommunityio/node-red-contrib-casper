@@ -3,6 +3,11 @@ const {
 } = require("casper-js-sdk");
 
 module.exports = function (RED) {
+
+	/**
+	 * GetLatestBlockInfoNode - Get the info of the lastets block from the casper's blockchain	
+	 *
+	 */
 	function GetLatestBlockInfoNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;

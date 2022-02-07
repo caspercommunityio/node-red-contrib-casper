@@ -3,6 +3,11 @@ const {
 } = require("casper-js-sdk");
 
 module.exports = function (RED) {
+
+	/**
+	 * GetPeersNode - Get the peers from the casper's blockchain	
+	 *
+	 */
 	function GetPeersNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;

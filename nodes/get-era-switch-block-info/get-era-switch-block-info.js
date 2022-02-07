@@ -3,6 +3,11 @@ const {
 } = require("casper-js-sdk");
 
 module.exports = function (RED) {
+
+	/**
+	 * GetEraSwitchBlockInfoNode - Get the era switch block info from the casper's blockchain	
+	 *
+	 */
 	function GetEraSwitchBlockInfoNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;

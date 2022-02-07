@@ -4,6 +4,11 @@ const {
 } = require("casper-js-sdk");
 module.exports = function (RED) {
 
+
+	/**
+	 * TransferNode - Create a transfer object to deploy it on the casper's blockchain
+	 *
+	 */
 	function TransferNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;

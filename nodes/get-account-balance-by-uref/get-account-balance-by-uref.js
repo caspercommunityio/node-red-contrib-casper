@@ -3,6 +3,10 @@ const {
 } = require("casper-js-sdk");
 
 module.exports = function (RED) {
+	/**
+	 * GetAccountBalanceByUrefNode - Retrieve the account's balance from an Uref
+	 *
+	 */
 	function GetAccountBalanceByUrefNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;

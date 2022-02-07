@@ -1,4 +1,9 @@
 module.exports = function (RED) {
+
+	/**
+	 * CasperSignNode - Create a node to store the info needed to sign a deploy	
+	 *
+	 */
 	function CasperSignNode(n) {
 		RED.nodes.createNode(this, n);
 		//Parameters used to sign a deploy

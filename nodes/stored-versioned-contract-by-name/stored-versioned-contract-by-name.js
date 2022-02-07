@@ -2,6 +2,11 @@ const {
 	DeployUtil
 } = require("casper-js-sdk");
 module.exports = function (RED) {
+
+	/**
+	 * StoredVersionedContractByNameNode - Create a Stored versioned contract by name object to deploy it on the casper's blockchain		
+	 *
+	 */
 	function StoredVersionedContractByNameNode(config) {
 		RED.nodes.createNode(this, config);
 		var node = this;
