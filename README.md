@@ -62,7 +62,7 @@ sudo service nodered restart
 * get-transfers
 * get-validators-info
 
-Each node is documented inside Node-RED, you'll find what are the input and the output of each node.
+Each node is documented inside Node-RED, you'll find what are the input and the output of each node. (https://nodered.org/docs/user-guide/editor/workspace/nodes#editing-node-properties)
 
 ### Interact with contracts of the Casper's Blockchain
 
@@ -75,7 +75,7 @@ Each node is documented inside Node-RED, you'll find what are the input and the 
 * transfer
 * put-depoy
 
-Each node is documented inside Node-RED, you'll find what are the input and the output of each node.
+Each node is documented inside Node-RED, you'll find what are the input and the output of each node. (https://nodered.org/docs/user-guide/editor/workspace/nodes#editing-node-properties)
 
 ### Casper Sign
 
