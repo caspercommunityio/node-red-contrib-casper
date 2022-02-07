@@ -770,34 +770,6 @@
         ]
     },
     {
-        "id": "f4e6052c5493ddd8",
-        "type": "inject",
-        "z": "4d34ab9bdaeeb5db",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 120,
-        "y": 800,
-        "wires": [
-            [
-                "c5e7b86c8f8a241a"
-            ]
-        ]
-    },
-    {
         "id": "29a5e0b08bd88326",
         "type": "http in",
         "z": "4d34ab9bdaeeb5db",
@@ -1033,7 +1005,7 @@
         "name": "",
         "payment": "10",
         "client": "da7c37679e4f84b1",
-        "Sign": "",
+        "Sign": "473b566042d6c542",
         "x": 510,
         "y": 1440,
         "wires": [
@@ -1194,20 +1166,6 @@
         "x": 710,
         "y": 1440,
         "wires": []
-    },
-    {
-        "id": "c5e7b86c8f8a241a",
-        "type": "get-deploy",
-        "z": "4d34ab9bdaeeb5db",
-        "name": "",
-        "client": "42cbe234c09eadc6",
-        "x": 410,
-        "y": 800,
-        "wires": [
-            [
-                "0fcaf5b013032f29"
-            ]
-        ]
     },
     {
         "id": "42cbe234c09eadc6",
