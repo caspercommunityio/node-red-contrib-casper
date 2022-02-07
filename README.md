@@ -18,11 +18,17 @@ sudo service nodered restart
 ```
 ## How to create your first flow
 
-* You have to find a peer where you can connect.
+* If you are not familiar with node-red, first read the doc. of how to create your firsts flows : https://nodered.org/docs/tutorials/first-flow and https://nodered.org/docs/tutorials/
+
+* You have to find a valid peer where you can connect.
 
   You can find the list here : https://cspr.live/tools/peers
 
   Select one peer in the list and take only his IP address.
+
+  Check that your peer is active by testing the following url in your browser : http://[ip from cspr.live]:7777/rpc
+
+  If that requests doesnt return something, it means that the peer will not repsond to any RPC commands. Select another one and try again.
 
 * Drop any node on your flow and double-click on it to configure it
 
@@ -31,6 +37,8 @@ sudo service nodered restart
 * You have to configure a "client". Use the IP Address found on cpsr.live. The default port is "7777" and the default protocol is "http".
 
 <img src="https://raw.githubusercontent.com/caspercommunityio/node-red-contrib-casper/master/assets/casper-client.png">
+
+* Don't forget to read the documentation of the node to know what are the inputs of the node.
 
 ## List of available nodes
 
